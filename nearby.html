@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="nearby.css">
+        <script src="nearby.js"></script>
+      </head>
+    <body>
+        <div class="main-div">
+            <h1>Map</h1>
+            <p><strong>Delhi, California, United States of America</strong> <br> 
+                Detailed location provided after booking</p>
+            <hr>
+            <div class="flex-tabs">
+                <div class="tab" onclick="displayList('highlight')">Highlights</div>
+                <div class="tab" onclick="displayList('outdoor')">Outdoor Activities</div>
+                <div class="tab" onclick="displayList('family')">Family-Friendly</div>
+                <div class="tab" onclick="displayList('restaurant')">Restaurants</div>
+                <div class="tab">Landmarks</div>
+                <div class="tab">Shopping & relaxation</div>
+            </div>
+            <div class="flex-container">
+                <div class="list-container">
+                    <h4>What's nearby</h4>
+                    <div id="list" class="list">
+                     </div>
+
+                    <div class="page-container">
+                        <div id="page-back" class="page-back" onclick="pageButton('back')">
+                            <p>&lt;</p>
+                        </div>
+                        <div id="page-number" class="page-number">
+                            <p>1-6 of 12</p>
+                        </div>
+                        <div id="page-next" class ="page-next" onclick="pageButton('next')">
+                            <p>&gt;</p>
+                        </div>
+                    </div>
+
+                    
+                </div>
+
+                <div class="map-container"> 
+                    <img src="map.png" alt="map" style="max-width:100%;">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
