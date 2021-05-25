@@ -3,7 +3,6 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="nearby.css">
-        <script src="nearby.js"></script>
       </head>
     <body>
         <div class="main-div">
@@ -12,12 +11,12 @@
                 Detailed location provided after booking</p>
             <hr>
             <div class="flex-tabs">
-                <div class="tab" onclick="displayList('highlight')">Highlights</div>
-                <div class="tab" onclick="displayList('outdoor')">Outdoor Activities</div>
-                <div class="tab" onclick="displayList('family')">Family-Friendly</div>
-                <div class="tab" onclick="displayList('restaurant')">Restaurants</div>
-                <div class="tab">Landmarks</div>
-                <div class="tab">Shopping & relaxation</div>
+                <div id = "high" class="tab">Highlights</div>
+                <div id = "out" class="tab">Outdoor Activities</div>
+                <div id = "fam" class="tab" >Family-Friendly</div>
+                <div id = "rest" class="tab">Restaurants</div>
+                <!-- <div class="tab">Landmarks</div> -->
+                <!-- <div class="tab">Shopping & relaxation</div> -->
             </div>
             <div class="flex-container">
                 <div class="list-container">
@@ -45,5 +44,7 @@
                 </div>
             </div>
         </div>
+
+        <script src="nearby.js"></script>
     </body>
 </html>

@@ -72,28 +72,6 @@ function setHtmlList(arr){
         document.getElementById("page-number").innerHTML = (currPage*itemPerPage)+1 + " - "+(itemPerPage*(currPage+1))+" of "+currList.length;
     else
         document.getElementById("page-number").innerHTML = (currPage*itemPerPage)+1 + " - "+currList.length+" of "+currList.length;
-
-
-}
-
-function displayList(str){
-    switch(str){
-        case "highlight":
-            setListPages(highlightList);
-            setHtmlList(currListPages[currPage]);
-            break;
-         case "outdoor":
-            setListPages(outdoorList);
-            setHtmlList(currListPages[currPage]);
-            break;
-         case "family":
-            setListPages(familyList);
-            setHtmlList(currListPages[currPage]);
-            break;
-         case "restaurant":
-            setListPages(restaurantList);  
-            setHtmlList(currListPages[currPage]);
-    }
 }
 
 function pageButton(str){
@@ -111,7 +89,49 @@ function pageButton(str){
     }
 }
 
-console.log(highlightList);
-console.log(outdoorList);
-console.log(familyList);
-console.log(restaurantList);
+var tabs = document.querySelectorAll('.tab,.tab-selected');
+console.log(tabs);
+var selectedTab;
+
+//intializing high tab as selected
+setListPages(highlightList);
+setHtmlList(currListPages[currPage]);
+var highTab = document.getElementById("high");
+highTab.classList.remove("tab");
+highTab.classList.add("tab-selected");
+selectedTab = highTab;
+
+function tabSelectDesignChange(tab){
+    selectedTab.classList.remove("tab-selected");
+    selectedTab.classList.add("tab")
+    tab.classList.remove("tab");
+    tab.classList.add("tab-selected");
+    selectedTab = tab;
+}
+
+for (var i = 0; i < tabs.length; i++) {
+    tabs[i].addEventListener('click', function() {
+        switch(this.id){
+            case "high":
+                setListPages(highlightList);
+                setHtmlList(currListPages[currPage]);
+                tabSelectDesignChange(this);
+                break;
+             case "out":
+                setListPages(outdoorList);
+                setHtmlList(currListPages[currPage]);
+                tabSelectDesignChange(this);
+                break;
+             case "fam":
+                setListPages(familyList);
+                setHtmlList(currListPages[currPage]);
+                tabSelectDesignChange(this);
+                break;
+             case "rest":
+                setListPages(restaurantList);  
+                setHtmlList(currListPages[currPage]);
+                tabSelectDesignChange(this);
+        }
+    }, false);
+}
+
