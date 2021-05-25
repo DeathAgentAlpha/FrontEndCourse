@@ -25,7 +25,7 @@ h1{
     white-space: nowrap;
 }
 
-.tab:hover{
+.tab-selected{
     color:rgb(124, 124, 245);
     padding:4px;
     border: 2px solid rgb(106, 106, 248);

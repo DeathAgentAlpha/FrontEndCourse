@@ -1,55 +1,77 @@
-// TODO: Retain style after clicking button
+var list = [
+    {name: 'Hilmar Cheese Company', dist: 1, tags:['high', 'out']},
+    {name: 'California State University Stanislaus', dist: 3.8, tags:['high']},
+    {name: 'Hilmar Country Plaza', dist: 1, tags:['high']},
+    {name: 'Carnegie Arts Center', dist: 1, tags:['out']},
+    {name: 'Ricos Pizza', dist: 1, tags:['high', 'out']},
+    {name: 'Elegant Bull', dist: 1, tags:['out']},
+    {name: 'ABCABAC', dist: 1, tags:['out']},
+    {name: 'CGDFS', dist: 1, tags:['high']},
+    {name: 'AHUEE', dist: 1, tags:['high', 'out']},
+    {name: 'FamRest', dist: 1, tags:['fam', 'rest']},
+    {name: 'HighRest', dist: 1, tags:['high', 'rest']},
+    {name: 'HighFamOut', dist: 1, tags:['high','fam', 'out']},
+    {name: 'HighFam', dist: 1, tags:['high', 'fam']},
+    {name: 'Out', dist: 1, tags:['out']},
+    {name: 'Fam', dist: 1, tags:['fam']},
+    {name: 'High', dist: 1, tags:['high']},
+    {name: 'Rest', dist: 1, tags:['rest']},
+    {name: 'All', dist: 1, tags:['high', 'out','fam','rest']},
+    {name: 'Carmellon', dist: 1, tags:['high', 'out']},
+]
 
-function makeList(arr,prefix){
-    for(var i=0;i<Math.floor(Math.random()*100);i++){
-        arr.push(i+1+". "+prefix+i)
-    }
+
+function makeList(tag){
+    var arr = []
+    var rank = 1
+    list.forEach(x => {
+        if(x.tags.includes(tag)){
+            var temp = {}
+            temp['name'] = x.name;
+            temp['dist'] = x.dist;
+            temp['rank'] = rank++;
+            arr.push(temp);
+        }
+    })
     return arr;
 }
-var highlightList = makeList([],"highlight");
-var outdoorList = makeList([],"outdoor");
-var familyList = makeList([],"family");
-var restaurantList = makeList([],"restaurant");
 
-//array of sub-list for every page
+
+var highlightList = makeList("high");
+var outdoorList = makeList("out");
+var familyList = makeList("fam");
+var restaurantList = makeList("rest");
+
 var currList;
+//array of sub-list for every page
 var currListPages;
 var currPage;
-var ipp = 5; //item per page
+var itemPerPage = 5; //item per page
 
-// var toggle = false;
-// var btn = document.getElementById("btn");
-// btn.addEventListener("click",function(){
-//     if(!toggle){
-//         toggle = true;
-//         btn.className = "red";
-//     } else {
-//         toggle = false;
-//         btn.className = "blue";
-//     }
-// }); 
+
 function setListPages(arr){
     currList = arr;
     currListPages = []
     currPage = 0;
     divide = 0;
-    while(divide+ipp < currList.length){
-        currListPages.push(arr.slice(divide,divide+ipp));
-        divide+=ipp;
+    while(divide+itemPerPage < currList.length){
+        currListPages.push(arr.slice(divide,divide+itemPerPage));
+        divide+=itemPerPage;
     }
     currListPages.push(arr.slice(divide));
 }
+
 function setHtmlList(arr){
     code = "<ul>";
     arr.forEach(x => {
-        code+= "<li><div class=\"list-item\"><div class=\"list-item-text\">"+ x + "</div> <div class=\"list-item-distance\">" + "3.8 km" + "</div></div></li>"
+        code+= "<li class=\"list-item\"><div class=\"list-item-text\">"+ x.rank + ". " + x.name + "</div> <div class=\"list-item-distance\">" + x.dist + "</div></li>"
     });
     code += "</ul>"
     document.getElementById("list").innerHTML = code;
     if(currPage != currListPages.length -1)
-        document.getElementById("page-number").innerHTML = (currPage*ipp)+1 + " - "+(ipp*(currPage+1))+" of "+currList.length;
+        document.getElementById("page-number").innerHTML = (currPage*itemPerPage)+1 + " - "+(itemPerPage*(currPage+1))+" of "+currList.length;
     else
-        document.getElementById("page-number").innerHTML = (currPage*ipp)+1 + " - "+currList.length+" of "+currList.length;
+        document.getElementById("page-number").innerHTML = (currPage*itemPerPage)+1 + " - "+currList.length+" of "+currList.length;
 
 
 }
@@ -88,6 +110,7 @@ function pageButton(str){
             }
     }
 }
+
 console.log(highlightList);
 console.log(outdoorList);
 console.log(familyList);
